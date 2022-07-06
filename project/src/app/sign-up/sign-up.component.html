@@ -1,0 +1,34 @@
+<body>
+
+    
+    <div class="container">
+
+        <div class="header">
+        <h4>SIGN UP</h4>
+        </div>
+        <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+
+            <label for="username">User Name</label><br>
+            <input formControlName="username" type="text" id="username" name="username"style="color:#df9e9e;" 
+             ><br>
+             <label for="firstname">First Name</label><br>
+             <input formControlName="firstName" type="text" id="firstname" name="firstname"style="color:#df9e9e;" 
+              ><br>
+              <label for="email">Email-id</label><br>
+              <input formControlName="email" type="email" id="email" name="email"style="color:#df9e9e;" 
+               ><br>
+             <br>
+            <label for="password">Password</label><br>
+            <input formControlName="password" type="password" id="password" name="password"><br>
+            <input class="btn" type="submit" value="Signup" >
+
+        </form>
+
+        <a routerLink="/login">Already have an account? Sign-in!</a>
+
+
+
+    </div>
+
+
+</body>

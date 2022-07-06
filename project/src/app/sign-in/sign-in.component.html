@@ -1,0 +1,28 @@
+<body>
+
+    
+    <div class="container">
+
+        <div class="header">
+        <h4>SIGN IN</h4>
+        </div>
+        <form [formGroup]= "loginForm" (ngSubmit)="login()">
+
+            <label for="username">User Name</label><br>
+            <input formControlName="username" type="text" id="username" name="username"style="color:#df9e9e;" 
+             ><br>
+             <br>
+            <label for="password">Password</label><br>
+            <input formControlName="password" type="password" id="password" name="password"><br>
+            <input class="btn" type="submit" value="LOGIN" >
+
+        </form>
+
+        <a routerLink="/forgotPass">Forgot password?</a><br>
+        <a routerLink="/signup">Don't have an account? Sign-up Now!</a>
+
+
+    </div>
+
+
+</body>

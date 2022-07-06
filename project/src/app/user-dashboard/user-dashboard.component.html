@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user">User DashBoard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">logout</a>
+        </li>       
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<h6>Filter subjects based on branch</h6>
+<input class="form-control" type="text" name="branch" placeholder="branches" [(ngModel)]="searchbranch" (ngModelChange)="searchByBranch()">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="sId" scope="col"> ID</th>
+      <th class="id" scope="col">Subject ID</th>
+      <th class="name" scope="col">Subject Name</th>
+      <th class="branch" scope="col">Branch</th>
+      <th class="price" scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let subject of subjects">
+      
+      <td>{{subject.sId}}</td>
+        <td>{{subject.id}}</td>
+        <td>{{subject.name}}</td>
+        <td>{{subject.branch}}
+        <td>{{subject.price}}</td>
+
+    </tr>
+  </tbody>
+</table>

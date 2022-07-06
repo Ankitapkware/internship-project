@@ -1,0 +1,190 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/admin">Admin DashBoard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">logout</a>
+        </li>       
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<div class="card-header">
+  <ul class="nav nav-tabs card-header-tabs">
+    <li class="nav-item">
+        <a class="nav-link" href="/admin">Home</a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="true" href="/allsubjects">Manage Subjects</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/students">Manage Students</a>
+    </li>
+    
+  </ul>
+</div>
+
+<button (click)="open(content)" type="button" class="btn btn-info" >Add Subject</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th class="sId" scope="col"> ID</th>
+        <th class="id" scope="col">Subject ID</th>
+        <th class="name" scope="col">Subject Name</th>
+        <th class="branch" scope="col">Branch</th>
+        <th class="price" scope="col">Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor= "let subject of subjects">
+        
+        <td>{{subject.sId}}</td>
+          <td>{{subject.id}}</td>
+          <td>{{subject.name}}</td>
+          <td>{{subject.branch}}
+          <td>{{subject.price}}</td>
+
+          <td><button (click)= "openUpdate(contentUpdate, subject)" type="button" class="btn btn-success">Update</button>
+            <button (click)= "openDelete(contentDelete, subject)" type="button" class="btn btn-danger">Delete</button>
+          </td>
+      
+
+      </tr>
+    </tbody>
+  </table>
+
+<!--- ADD NEW SUBJECT  --->
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Subject</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+        <div class="form-group">
+          <label for="sId">Id</label>
+          <div class="input-group">
+            <input id="id1" name="sId" class="form-control" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id">Subject Id</label>
+          <div class="input-group">
+            <input id="subject_id" name="id" class="form-control" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Subject Name</label>
+          <div class="input-group">
+            <input id="sub_name" name="name" class="form-control" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="branch">Branch</label>
+          <div class="input-group">
+            <input id="branch" name="branch" class="form-control" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <input id="price" name="price" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-info">Submit</button>
+          </div>
+      </form>
+    </div>
+  </ng-template>
+
+<!--- UPDATE SUBJECT BY ID--->
+
+  <ng-template #contentUpdate let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title2">Update Subject</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <form [formGroup]="updateForm" novalidate>
+
+       <!--- <div class="form-group"> 
+          <label for="sID">Id</label> 
+          <div class="input-group"> 
+             <input formControlName="sId" class="form-control"> 
+          </div> 
+        </div>
+        --->
+
+        <div class="form-group"> 
+         <label for="id">Subject Id</label> 
+         <div class="input-group"> 
+            <input formControlName="id" class="form-control"> 
+         </div> 
+       </div>
+        <div class="form-group">
+          <label for="name">Subject Name</label>
+          <div class="input-group">
+            <input formControlName="name" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="branch">Branch</label>
+          <div class="input-group">
+            <input formControlName="branch" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <input formControlName="price" class="form-control">
+          </div>
+        </div>
+        
+        <div class="border text-center"> 
+          <button data-dismiss="modal" (click)= "onSave()" class="btn btn-info">Save Changes</button> </div>
+      </form>
+    
+    </div>
+  </ng-template>
+
+
+
+
+  <ng-template #contentDelete let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Delete</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Are you sure you want to delete this record.</h2>
+      <div class="border text-center"> 
+        <button data-dismiss="modal"  (click)="onDelete()"class="btn btn-danger">Yes, Delete!</button> 
+      </div>
+    </div>
+    
+  </ng-template>
